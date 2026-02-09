@@ -18,19 +18,19 @@ The solution consists of two main projects:
 
 ```mermaid
 graph TD
-    User((User)) -->|Starts (Admin)| App[SyncMLViewer WPF App]
+    User(("User")) -->|"Starts (Admin)"| App["SyncMLViewer WPF App"]
     
     subgraph "SyncMLViewer Process"
-        UI[MainWindow UI]
-        ETW[ETW Event Listener]
-        Parser[XML Parser / Session Logic]
-        SyncTrigger[Sync Trigger Logic]
+        UI["MainWindow UI"]
+        ETW["ETW Event Listener"]
+        Parser["XML Parser / Session Logic"]
+        SyncTrigger["Sync Trigger Logic"]
     end
     
     subgraph "Windows OS"
-        OMADM[OMADMClient (MDM Agent)]
-        TaskSched[Task Scheduler]
-        ETWSys[ETW System]
+        OMADM["OMADMClient (MDM Agent)"]
+        TaskSched["Task Scheduler"]
+        ETWSys["ETW System"]
     end
     
     subgraph "Helper Process"
@@ -38,19 +38,19 @@ graph TD
     end
 
     App --> UI
-    UI -->|Start Trace| ETW
-    ETW -->|Register Provider| ETWSys
+    UI -->|"Start Trace"| ETW
+    ETW -->|"Register Provider"| ETWSys
     
-    UI -->|Click Sync| SyncTrigger
-    SyncTrigger -->|Run Task| TaskSched
+    UI -->|"Click Sync"| SyncTrigger
+    SyncTrigger -->|"Run Task"| TaskSched
     TaskSched -->|Start| OMADM
     
-    OMADM -->|SyncML Traffic Events| ETWSys
-    ETWSys -->|TraceEvent Stream| ETW
-    ETW -->|Raw Data| Parser
-    Parser -->|Sessions & Messages| UI
+    OMADM -->|"SyncML Traffic Events"| ETWSys
+    ETWSys -->|"TraceEvent Stream"| ETW
+    ETW -->|"Raw Data"| Parser
+    Parser -->|"Sessions & Messages"| UI
     
-    UI -.->|Invokes (Privileged Tasks)| Executer
+    UI -.->|"Invokes (Privileged Tasks)"| Executer
 ```
 
 
