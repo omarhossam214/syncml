@@ -110,7 +110,22 @@ To force Windows to sync with the MDM server, the application does not use undoc
 -   **Prerequisites**: The app requires Administrator privileges to run because collecting global ETW traces is a privileged operation.
 
 ## How to Run
-1.  Open `SyncMLViewer.sln` in Visual Studio (2019 or later recommended).
+
+To use the program, you have two options depending on whether you want to run the pre-built version or build it yourself from the source code.
+
+### Option 1: Use the Pre-built Version (Easiest)
+The repository includes pre-compiled versions in the `dist` folder.
+1.  Navigate to **`dist`** directory within the project root.
+2.  Locate the latest zip file (e.g., **`SyncMLViewer-v140.zip`**).
+3.  **Right-click** and **Extract All** to a folder of your choice.
+4.  Open the extracted folder and run **`SyncMLViewer.exe`** as **Administrator**.
+
+### Option 2: Build from Source
+If you want to modify or build the code yourself:
+1.  Open **`SyncMLViewer.sln`** in Visual Studio (2019 or later recommended).
 2.  Restore NuGet packages.
-3.  Build the solution (Debug or Release).
-4.  Run `SyncMLViewer.exe` **as Administrator**.
+3.  Go to **Build** > **Build Solution** (or press `Ctrl+Shift+B`).
+4.  Once built, the executable will be generated in `SyncMLViewer\bin\Debug\` or `bin\Release\`.
+5.  Run **`SyncMLViewer.exe`** as **Administrator**.
+
+**Note:** The application requires **Administrator privileges** to run because it uses ETW (Event Tracing for Windows) to capture the system's MDM traffic, which is a privileged operation.
